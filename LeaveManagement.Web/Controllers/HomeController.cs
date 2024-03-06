@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 using LeaveManagement.Web.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeaveManagement.Web.Controllers
@@ -20,6 +21,7 @@ namespace LeaveManagement.Web.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
