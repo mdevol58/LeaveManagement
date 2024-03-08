@@ -4,6 +4,7 @@ using LeaveManagement.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveManagement.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240307010545_AddingPeriodToAllocation")]
+    partial class AddingPeriodToAllocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,8 +109,8 @@ namespace LeaveManagement.Web.Data.Migrations
                         {
                             Id = "b0d243f3-f4c7-4a89-8e40-c67ca826ab60",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e16968da-a1f2-48dd-83eb-4f7b70adac4d",
-                            DateJoined = new DateTime(2024, 3, 7, 16, 47, 40, 742, DateTimeKind.Utc).AddTicks(9916),
+                            ConcurrencyStamp = "476d16de-785c-413a-b30f-f3517b5580c6",
+                            DateJoined = new DateTime(2024, 3, 7, 1, 5, 39, 549, DateTimeKind.Utc).AddTicks(7311),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "mark@devols.net",
                             EmailConfirmed = true,
@@ -116,9 +119,9 @@ namespace LeaveManagement.Web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MARK@DEVOLS.NET",
                             NormalizedUserName = "MARK@DEVOLS.NET",
-                            PasswordHash = "AQAAAAIAAYagAAAAEByS63kt5ubuqhXA4zg+BfmY4pznmx7/Aq1ZxvZjlrYuBV3pDpKGbYSx/5fI15lQWw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPiFKP9E0wym1c3izrqLuOoSROAyfRD/poB8ahJGdUk5TE6g9r9tWaQ8wYtqYBPRlQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "89e54c52-ecb7-4941-8b06-c6a0c29da9e5",
+                            SecurityStamp = "8e1baf4c-86ca-4fd5-a16c-78c95048c079",
                             TwoFactorEnabled = false,
                             UserName = "mark@devols.net"
                         },
@@ -126,8 +129,8 @@ namespace LeaveManagement.Web.Data.Migrations
                         {
                             Id = "55710026-F12D-4053-AC4F-693C52A9E53A",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "da53468e-c3ae-42c0-b4e6-75a61979a2ee",
-                            DateJoined = new DateTime(2024, 3, 7, 16, 47, 40, 850, DateTimeKind.Utc).AddTicks(2074),
+                            ConcurrencyStamp = "54fc995d-8302-4cda-b0ec-d56a4374b68f",
+                            DateJoined = new DateTime(2024, 3, 7, 1, 5, 39, 716, DateTimeKind.Utc).AddTicks(3581),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "mark_devol@cox.net",
                             EmailConfirmed = true,
@@ -136,9 +139,9 @@ namespace LeaveManagement.Web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MARK_DEVOL@COX.NET",
                             NormalizedUserName = "MARK_DEVOL@COX.NET",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJFR6x9XO0/RKws1kLpo/ZDsj25MYdtnEyEhlSBWaTUYsuNLhvxciIynPop/dT3cMQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGrTOr81MEYLMZ3OkBXIzFAFVnGPzHdxplrFM1Y2ONfzCkM+FZe6+DcSHkruKCZscw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57a93b59-557c-4d28-b50a-f4989dcc511e",
+                            SecurityStamp = "051bd25e-41a9-4e3e-a89d-c6efb6230b0e",
                             TwoFactorEnabled = false,
                             UserName = "mark_devol@cox.net"
                         });
@@ -158,9 +161,8 @@ namespace LeaveManagement.Web.Data.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LeaveTypeId")
                         .HasColumnType("int");
