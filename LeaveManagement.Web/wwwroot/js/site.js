@@ -4,3 +4,9 @@
 // Write your JavaScript code.
 
 new DataTable('.table');
+
+$(function () {
+    $(".datepicker").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+});
