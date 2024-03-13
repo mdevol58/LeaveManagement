@@ -6,6 +6,9 @@ namespace LeaveManagement.Web.Models
     {
         public int Id { get; set; }
 
+        [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "Leave Type")]
