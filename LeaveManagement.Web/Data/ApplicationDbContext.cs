@@ -2,7 +2,6 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using LeaveManagement.Web.Models;
 
 namespace LeaveManagement.Web.Data
 {
@@ -20,6 +19,23 @@ namespace LeaveManagement.Web.Data
             builder.ApplyConfiguration(new RoleSeedConfiguration());
             builder.ApplyConfiguration(new UserSeedConfiguration());
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            foreach (var entry in base.ChangeTracker.Entries<BaseEntity>()
+                                                    .Where(entry => ((entry.State == EntityState.Added) ||
+                                                                     (entry.State == EntityState.Modified))))
+            {
+                entry.Entity.DateModified = DateTime.Now;
+
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.DateCreated = DateTime.Now;
+                }
+            }
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         public DbSet<LeaveType> LeaveTypes { get; set; }

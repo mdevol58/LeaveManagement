@@ -100,11 +100,22 @@ namespace LeaveManagement.Web.Controllers
                 return NotFound();
             }
 
+            // Get the current leave type record from the DB so that it contains the auditing information
+
+            var leaveType = await leaveTypeRepository.GetAsync(id);
+
+            if (leaveType is null)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var leaveType = mapper.Map<LeaveType>(leaveTypeVM);
+                    // Use this type of mapper to presurve the auditing data that is not part of the VM object)
+
+                    mapper.Map(leaveTypeVM, leaveType);
 
                     await leaveTypeRepository.UpdateAsync(leaveType);
                 }
@@ -119,8 +130,10 @@ namespace LeaveManagement.Web.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(leaveTypeVM);
         }
 
