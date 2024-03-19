@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
+using Serilog;
+
 namespace LeaveManagement.Web
 {
     public class Program
@@ -40,9 +42,14 @@ namespace LeaveManagement.Web
 
             builder.Services.AddAutoMapper(typeof(MapperConfig));
 
+            builder.Host.UseSerilog((context, logConfig) => logConfig.WriteTo.Console()
+                                                                     .ReadFrom.Configuration(context.Configuration));
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            app.UseSerilogRequestLogging();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -16,12 +16,15 @@ namespace LeaveManagement.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ILeaveRequestRepository leaveRequestRepository;
+        private readonly ILogger<LeaveRequestsController> logger;
 
         public LeaveRequestsController(ApplicationDbContext context,
-                                       ILeaveRequestRepository leaveRequestRepository)
+                                       ILeaveRequestRepository leaveRequestRepository,
+                                       ILogger<LeaveRequestsController> logger)
         {
             _context = context;
             this.leaveRequestRepository = leaveRequestRepository;
+            this.logger = logger;
         }
 
         [Authorize(Roles = Roles.Administrator)]
@@ -63,6 +66,8 @@ namespace LeaveManagement.Web.Controllers
             }
             catch (Exception ex)
             {
+                logger.LogError("Exception occurred while approving leave request");
+
                 throw;
             }
 
@@ -79,6 +84,8 @@ namespace LeaveManagement.Web.Controllers
             }
             catch (Exception ex)
             {
+                logger.LogError("Exception occurred while cancelling leave request");
+
                 throw;
             }
 
