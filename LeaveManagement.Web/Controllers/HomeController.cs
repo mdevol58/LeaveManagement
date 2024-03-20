@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-using LeaveManagement.Web.Models;
+using LeaveManagement.Common.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
